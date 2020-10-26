@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Xml;
+using System.Xml.Schema;
 
 namespace Task10
 {
@@ -27,15 +28,13 @@ namespace Task10
         }
         public void ReadObjectFromXML(string path)
         {
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("wrong path");
+                return;
+            }
             XmlDocument xml = new XmlDocument();
-            try
-            {
-                xml.Load(path);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            xml.Load(path);
             XmlElement root = xml.DocumentElement;
             foreach(XmlNode x in root.ChildNodes)
             {
@@ -49,15 +48,13 @@ namespace Task10
         }
         public void WriteObjectToXML(string path)
         {
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("wrong path");
+                return;
+            }
             XmlDocument xml = new XmlDocument();
-            try
-            {
-                xml.Load(path);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            xml.Load(path);
             XmlElement root = xml.DocumentElement;
 
             XmlElement xBook = xml.CreateElement("Book");
@@ -84,27 +81,22 @@ namespace Task10
         }
         public static void WriteObjectToJSON(string path, Book b)
         {
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("wrong path");
+                return;
+            }
             string s = JsonSerializer.Serialize<Book>(b);
-            try
-            {
-                File.WriteAllText(path, s);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            File.WriteAllText(path, s);
         }
         public static Book ReadObjectFromJSON(string path)
         {
-            string s = "";
-            try
+            if (!File.Exists(path))
             {
-                s = File.ReadAllText(path);
+                Console.WriteLine("wrong path");
+                return null;
             }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            string s = File.ReadAllText(path);
             Book b = new Book();
             b = JsonSerializer.Deserialize<Book>(s);
             return b;

@@ -13,7 +13,6 @@ namespace Task10
             b.ReadObjectFromXML(@"..\..\..\XMLBookRead.xml");
             b.Disp();
             b.WriteObjectToXML(@"..\..\..\XMLBookWrite.xml");
-            Book.WriteObjectToJSON(@"..\..\..\write.json", b);
             Book a = new Book();
             a = Book.ReadObjectFromJSON(@"..\..\..\read.json");
             Console.WriteLine("a: ");
