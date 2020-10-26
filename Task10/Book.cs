@@ -85,12 +85,26 @@ namespace Task10
         public static void WriteObjectToJSON(string path, Book b)
         {
             string s = JsonSerializer.Serialize<Book>(b);
-            using (StreamWriter sw = new StreamWriter(path, false))
-                sw.Write(s);
+            try
+            {
+                File.WriteAllText(path, s);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         public static Book ReadObjectFromJSON(string path)
         {
-            string s = File.ReadAllText(path);
+            string s = "";
+            try
+            {
+                s = File.ReadAllText(path);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             Book b = new Book();
             b = JsonSerializer.Deserialize<Book>(s);
             return b;

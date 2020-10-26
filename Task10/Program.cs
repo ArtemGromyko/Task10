@@ -19,7 +19,6 @@ namespace Task10
             Console.WriteLine("a: ");
             a.Disp();
             Book.WriteObjectToJSON(@"..\..\..\write.json", a);
-
         }
     }
 }
