@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Book>
+  <Name>Book</Name>
+  <NumberOfPages>200</NumberOfPages>
+  <Author>Tom</Author>
+</Book>
